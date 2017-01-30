@@ -1,16 +1,15 @@
 class AuthenticationService:
     def is_authenticated(self, role_or_id, id=None):
         if id is None:
-            return role_or_id == 12345
+            return self.authenticate_by_id(role_or_id)
         else:
-            return role_or_id == 'admin'
+            return self.authenticate_by_role(role_or_id)
 
-    '''
-    the goal is to replace the method above with this one:
-    def is_authenticated(self, role, id):
+    def authenticate_by_id(self, id):
         return id == 12345
-    '''
 
+    def authenticate_by_role(self, role):
+        return role == 'admin'
 
 class AuthenticationClient:
     def __init__(self, authenticationService):
