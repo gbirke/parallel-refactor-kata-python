@@ -1,6 +1,9 @@
 class AuthenticationService:
-    def is_authenticated(self, id):
-        return id == 12345
+    def is_authenticated(self, role_or_id, id=None):
+        if id is None:
+            return role_or_id == 12345
+        else:
+            return role_or_id == 'admin'
 
     '''
     the goal is to replace the method above with this one:

@@ -15,6 +15,24 @@ class AuthenticatorTests(unittest.TestCase):
         normalUserId = 11111
         self.assertFalse(service.is_authenticated(normalUserId))
 
+    def test_administrator_role_is_always_authenticated(self):
+        service = method.AuthenticationService()
+        adminId = 123
+        roleName = 'admin'
+        self.assertTrue(service.is_authenticated(roleName, adminId))
+
+    def test_user_role_is_not_authenticated_initially(self):
+        service = method.AuthenticationService()
+        normalUserId = 11112
+        role_name = 'user'
+        self.assertFalse(service.is_authenticated(role_name, normalUserId))
+
+    def test_user_role_with_admin_id_is_not_authenticated_initially(self):
+        service = method.AuthenticationService()
+        adminId = 12345
+        role_name = 'user'
+        self.assertFalse(service.is_authenticated(role_name, adminId))
+
 
 class ShoppingCartTests(unittest.TestCase):
 
